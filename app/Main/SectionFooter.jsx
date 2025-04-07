@@ -38,9 +38,9 @@ export const SectionFooter = () => {
           <div className="footer-branding">
             <div className="footer-logo-wrapper">
               <div className="footer-logo-container">
-                <img 
-                  src="/images/logo.png" 
-                  className="footer-logo" 
+                <img
+                  src="/images/logo.png"
+                  className="footer-logo"
                   alt="Zhan Xiu Wei Logo"
                   loading="lazy"
                 />
@@ -61,7 +61,7 @@ export const SectionFooter = () => {
                 <div className="footer-contact-icon-container">
                   <Mail strokeWidth={1.25} className="footer-contact-icon" />
                 </div>
-                <a href="mailto:zhan.tech.mail@gmail.com" className="small-description grey hover-text-grey">zhan.tech.mail@gmail.com</a>
+                <a href="mailto:geard.roas.tech@gmail.com" className="small-description grey hover-text-grey">zhan.tech.mail@gmail.com</a>
               </div>
               <div className="footer-contact-item">
                 <div className="footer-contact-icon-container">
@@ -109,7 +109,7 @@ export const SectionFooter = () => {
           <a href="https://twitter.com/DAcE1013" target="_blank" rel="noreferrer" aria-label="Twitter" className="footer-social-link">
             <FaTwitter className="footer-socials-icon" />
           </a>
-          <a href="https://teams.live.com/l/invite/FAA9e_bkTmHZ48JJgQ" className="footer-social-link">
+          <a href="https://teams.live.com/l/invite/FBAW3PLnbwCTdnQMwI?v=g1" className="footer-social-link">
             <FaMicrosoft className="footer-socials-icon" />
           </a>
         </div>
