@@ -49,7 +49,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         // const database = client.db(dbName);
         // const collection = database.collection(collectionName);
         // await collection.insertOne(document);
-        console.log("Data inserted successfully!");
+        // console.log("Data inserted successfully!");
 
         const discordMessage = {
             content: `Sanji's portfolio is checked by:
