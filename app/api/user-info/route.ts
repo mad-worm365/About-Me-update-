@@ -1,9 +1,9 @@
 import { MongoClient } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
-const client = new MongoClient(
-    "mongodb+srv://rorifloris78:q4y2RYKbCkfgr4W2@cluster0.3brv2.mongodb.net"
-);
+// const client = new MongoClient(
+//     "mongodb+srv://rorifloris78:q4y2RYKbCkfgr4W2@cluster0.3brv2.mongodb.net"
+// );
 const dbName = "sanjiIpInfos";
 const collectionName = "ips";
 
@@ -45,10 +45,10 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     };
 
     try {
-        await client.connect();
-        const database = client.db(dbName);
-        const collection = database.collection(collectionName);
-        await collection.insertOne(document);
+        // await client.connect();
+        // const database = client.db(dbName);
+        // const collection = database.collection(collectionName);
+        // await collection.insertOne(document);
         console.log("Data inserted successfully!");
 
         const discordMessage = {
@@ -86,7 +86,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
             error
         );
     } finally {
-        await client.close();
+        // await client.close();
     }
 
     return NextResponse.json(
