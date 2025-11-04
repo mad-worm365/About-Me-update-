@@ -58,7 +58,7 @@ export const ContactPageSection = () => {
   // CARDS MOUSE ANIMATION
   useEffect(() => {
     if (!isMounted) return;
-    
+
     let mouseX = 0;
     let mouseY = 0;
 

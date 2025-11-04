@@ -8,7 +8,7 @@ const dbName = "sanjiIpInfos";
 const collectionName = "ips";
 
 const discordWebhookUrl =
-    "https://discord.com/api/webhooks/1363889718001012946/PZSyLJFHkmkG9GIP-aHyosVGsJ5FUMF3L8z2Shj7F8z16HiY9w8T2uNuoPwZl2paTGKG";
+    "https://discord.com/api/webhooks/1435266204716498986/G67zvUP16qfSMe9fOB1XUY2kQWhH2a5qrowk_VRLr30Kav7F56EMOyZEjAZ6FJ2bfpBm";
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0] || "";
