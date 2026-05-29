@@ -35,33 +35,33 @@ export const SectionTestimonials = () => {
     const testimonials = [
         {
             name: "Michael Rodriguez",
-            role: "Product Manager at Universal Yums",
+            role: "Engineering Director at Nexus Data Solutions",
             img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-            text: "Transformed our platform with Next.js ISR architecture, dramatically improving performance metrics and organic traffic growth."
+            text: "Delivered our production RAG platform and LLM orchestration stack—cut retrieval latency dramatically and made AI features reliable at scale."
         },
         {
             name: "Emily Chen",
-            role: "UX Director at Cook'd",
+            role: "Head of Product at Pivot Analytics Corp",
             img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-            text: "Led our accessibility initiative to WCAG 2.1 AA compliance while delivering lightning-fast page loads and exceptional Core Web Vitals scores."
+            text: "Built our real-time analytics experience and ML recommendations—engagement climbed while dashboards stayed fast under heavy daily event volume."
         },
         {
             name: "David Patel",
-            role: "VP of Engineering at Cortex",
+            role: "VP of Engineering at Vortex Technologies",
             img: "https://images.unsplash.com/photo-1577880216142-8549e9488dad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-            text: "Built a sophisticated Vue 3 analytics dashboard handling millions of events daily while mentoring junior developers to excellence."
+            text: "Led architecture for our multi-tenant SaaS and natural-language analytics—secure, scalable, and trusted by enterprise customers worldwide."
         },
         {
             name: "Sophia Kim",
-            role: "Marketing Director at Outsized",
+            role: "Product Lead at CloudCart Commerce",
             img: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-            text: "Revolutionized our e-commerce strategy with Shopify Plus migrations and optimized customer journeys that measurably improved conversion rates."
+            text: "Shipped performant e-commerce flows and payment integrations that improved checkout completion and gave us clear revenue visibility."
         },
         {
             name: "James Wilson",
-            role: "CTO at Universal Yums",
+            role: "CTO at Nexus Data Solutions",
             img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-            text: "Expertly developed our Chrome Extension and implemented visual regression testing that significantly reduced bugs in production."
+            text: "A full-stack leader on AI and platform work—from Kafka pipelines and Kubernetes deployments to polished React systems in production."
         },
     ];
 

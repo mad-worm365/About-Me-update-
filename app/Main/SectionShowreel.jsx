@@ -7,62 +7,49 @@ import { Timeline } from "@/components/ui/timeline";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
+const CompanyBadge = ({ initials }) => (
+  <div className="company-badge" aria-hidden="true">{initials}</div>
+);
+
 export const SectionShowreel = () => {
 
   const data = [
     {
-      title: "2023 ~ 2025",
+      title: "2022 ~ Present",
       content: (
         <div className='flex flex-col gap-2'>
           <p className="text-xl md:text-2xl font-bold text-start text-neutral-500">
-            Senior Frontend Engineer
+            Senior Full Stack Engineer – AI, Backend & Platform Architecture
           </p>
           <p className="text-neutral-200 text-sm md:text-lg font-normal mb-8">
-            Spearheaded a migration from a monolithic React SPA to a Next.js ISR architecture, reducing Time to Interactive by 55% and boosting SEO organic sessions by 30% within three months. Developed a custom Shopify Plus headless storefront using React and GraphQL, integrating real-time personalization features that increased average order value from $75 to $92. Architected a complex Chrome Extension using Manifest V3 and background scripts to scrape competitive pricing data and feed insights into an internal analytics dashboard—used daily by 50+ product managers. Implemented dynamic email templates using MJML and Handlebars for automated lifecycle campaigns, achieving an open rate of 28% and a click-through rate of 7% across multi-language audiences. Introduced Cypress visual regression testing into CI/CD, catching UI regressions before production deployments, reducing post-release bug reports by 40%.
+            Designed and shipped a production RAG system across 20+ enterprise data sources, cutting retrieval latency ~55% through embedding optimization and vector index tuning. Built LLM orchestration with LangChain for tool calling, memory, and multi-step reasoning; delivered AI chatbots handling ~10K daily interactions and improving support resolution ~45%. Architected cloud-native microservices (Node.js, NestJS, Python, Go) supporting ~50K RPS, Kafka event pipelines, PostgreSQL/Redis optimizations (~70% on critical queries), and real-time WebSocket features for 5,000+ concurrent users. Containerized workloads on Kubernetes with CI/CD, observability via Datadog, and on-call platform reliability practices.
           </p>
           <div className="flex flex-row gap-4 items-center">
-            <img src="/logos/yums.png" alt="universal yums" width={70} height={70} className="rounded-full" />
-            <p className="text-xl font-bold text-start text-neutral-500">
-              Universal Yums
-            </p>
+            <CompanyBadge initials="ND" />
+            <div>
+              <p className="text-xl font-bold text-start text-neutral-500">Nexus Data Solutions</p>
+              <p className="text-sm text-neutral-400">Austin, Texas, USA</p>
+            </div>
           </div>
         </div>
       ),
     },
     {
-      title: "2021 ~ 2023",
+      title: "2020 ~ 2022",
       content: (
         <div className='flex flex-col gap-2'>
           <p className="text-xl md:text-2xl font-bold text-start text-neutral-500">
-            Lead Frontend Engineer
+            Senior Full Stack Developer
           </p>
           <p className="text-neutral-200 text-sm md:text-lg font-normal mb-8">
-            Led frontend redevelopment of a high-traffic recipe portal with Nuxt.js and SSR, delivering sub-1.5s full page loads and improving Core Web Vitals scores by 45%. Integrated a WebSocket-based live chat system with Phoenix Channels, reducing average customer support resolution time from 12h to 2h. Designed a modular Shopify theme using Liquid and Tailwind CSS, allowing marketing to launch seasonal campaigns without developer intervention, cutting time-to-market by 60%. Pioneered a Progressive Web App (PWA) implementation that enabled offline browsing of saved recipes, leading to a 20% increase in weekly active users. Collaborated with UX team to implement accessibility enhancements (WCAG 2.1 AA), resulting in 100% compliance and earning an internal accessibility award.
+            Developed a real-time analytics platform processing ~2M events per day, combining React dashboards with Node.js and Python APIs. Built interactive data exploration with live updates, advanced filtering, and role-based access. Implemented ML-powered recommendation and scoring features that improved engagement ~40%. Improved frontend performance through code splitting and optimized state management, reducing page load times ~45%. Designed reliable PostgreSQL schemas, replication, and automated testing across frontend and backend.
           </p>
           <div className="flex flex-row gap-4 items-center">
-            <img src="/logos/cook'd.webp" alt="cookd" width={70} height={70} className="rounded-full" />
-            <p className="text-xl font-bold text-start text-neutral-500">
-              Cook'd
-            </p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "2020 ~ 2021",
-      content: (
-        <div className='flex flex-col gap-2'>
-          <p className="text-xl md:text-2xl font-bold text-start text-neutral-500">
-            Frontend & Full Stack Engineer
-          </p>
-          <p className="text-neutral-200 text-sm md:text-lg font-normal mb-8">
-            Built an analytics dashboard with Vue 3 Composition API and D3.js visualizations, supporting 10M+ events/day and enabling real-time KPI tracking for executive stakeholders. Developed a Svelte-based widget library to embed live data components on partner websites; adopted by three key clients, increasing partner integration revenue by $150K within six months. Deployed Node.js microservices in Docker containers orchestrated by Kubernetes on AWS EKS, achieving 99.9% uptime under peak loads. Mentored a team of five juniors, established best practices for Chrome Extension development, and led bi-weekly code reviews that improved code coverage from 60% to 85%.
-          </p>
-          <div className="flex flex-row gap-4 items-center">
-            <img src="/logos/cortex.png" alt="cortex" width={70} height={70} className="rounded-full" />
-            <p className="text-xl font-bold text-start text-neutral-500">
-              Cortex
-            </p>
+            <CompanyBadge initials="PA" />
+            <div>
+              <p className="text-xl font-bold text-start text-neutral-500">Pivot Analytics Corp</p>
+              <p className="text-sm text-neutral-400">Seattle, Washington, USA</p>
+            </div>
           </div>
         </div>
       ),
@@ -72,16 +59,57 @@ export const SectionShowreel = () => {
       content: (
         <div className='flex flex-col gap-2'>
           <p className="text-xl md:text-2xl font-bold text-start text-neutral-500">
-            Web Developer
+            Senior Full Stack Developer
           </p>
           <p className="text-neutral-200 text-sm md:text-lg font-normal mb-8">
-            Migrated five legacy WordPress and Magento sites onto Shopify Plus, preserving SEO rankings and migrating 100K+ products with automated scripts. Engineered responsive email campaigns with AMP for Email support, boosting click-to-open rates by 12% and reducing unsubscribes by 5%. Implemented lazy-loading strategies and responsive image sets, slashing page weight by 50% and improving Time to First Byte (TTFB) by 200ms. Collaborated with marketing to A/B test checkout flows using Optimizely, uncovering a variant that raised conversion by 8%.
+            Designed and maintained a multi-tenant SaaS platform supporting 1M+ daily active users with strict data isolation and enterprise security. Built React frontends and Node.js/Python backends for auth, reporting, and integrations. Delivered a natural-language data query interface for business users and executed large-scale customer migrations with near-zero downtime. Managed AWS infrastructure with Terraform for repeatable, consistent deployments.
           </p>
           <div className="flex flex-row gap-4 items-center">
-            <img src="/logos/outsized.jpg" alt="outsized" width={70} height={70} className="rounded-full" />
-            <p className="text-xl font-bold text-start text-neutral-500">
-              Outsized
-            </p>
+            <CompanyBadge initials="VT" />
+            <div>
+              <p className="text-xl font-bold text-start text-neutral-500">Vortex Technologies</p>
+              <p className="text-sm text-neutral-400">Amsterdam, Netherlands</p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "2016 ~ 2018",
+      content: (
+        <div className='flex flex-col gap-2'>
+          <p className="text-xl md:text-2xl font-bold text-start text-neutral-500">
+            Full Stack Developer
+          </p>
+          <p className="text-neutral-200 text-sm md:text-lg font-normal mb-8">
+            Built full-stack e-commerce solutions with complex catalogs, multi-currency pricing, and high-traffic customer journeys. Developed React frontends and Node.js services for orders, payments, and inventory. Integrated secure payment gateways with robust error handling and monitoring. Optimized performance to improve checkout completion and built analytics tools for sales and user behavior insights.
+          </p>
+          <div className="flex flex-row gap-4 items-center">
+            <CompanyBadge initials="CC" />
+            <div>
+              <p className="text-xl font-bold text-start text-neutral-500">CloudCart Commerce</p>
+              <p className="text-sm text-neutral-400">Berlin, Germany</p>
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: "2011 ~ 2015",
+      content: (
+        <div className='flex flex-col gap-2'>
+          <p className="text-xl md:text-2xl font-bold text-start text-neutral-500">
+            Bachelor of Science in Software Engineering
+          </p>
+          <p className="text-neutral-200 text-sm md:text-lg font-normal mb-8">
+            University of São Paulo — foundational training in software engineering, algorithms, systems design, and full-cycle product development.
+          </p>
+          <div className="flex flex-row gap-4 items-center">
+            <CompanyBadge initials="USP" />
+            <div>
+              <p className="text-xl font-bold text-start text-neutral-500">University of São Paulo</p>
+              <p className="text-sm text-neutral-400">São Paulo, Brazil</p>
+            </div>
           </div>
         </div>
       ),
@@ -94,29 +122,15 @@ export const SectionShowreel = () => {
   const showreelItemRef2 = useRef();
   const showreelItemRef3 = useRef();
   const showreelItemRef4 = useRef();
+  const showreelItemRef5 = useRef();
   const titleRef = useRef()
 
   const showreelItems = [
-  {
-      ref: showreelItemRef1,
-      img: "/logos/yums.png",
-      title: "Universal Yums",
-    },
-    {
-      ref: showreelItemRef2,
-      img: "/logos/cook'd.webp",
-      title: "Cook'd",
-    },
-    {
-      ref: showreelItemRef3,
-      img: "/logos/cortex.png",
-      title: "Cortex",
-    },
-    {
-      ref: showreelItemRef4,
-      img: "/logos/outsized.jpg",
-      title: "Outsized",
-    },
+    { ref: showreelItemRef1, initials: "ND", title: "Nexus Data Solutions" },
+    { ref: showreelItemRef2, initials: "PA", title: "Pivot Analytics Corp" },
+    { ref: showreelItemRef3, initials: "VT", title: "Vortex Technologies" },
+    { ref: showreelItemRef4, initials: "CC", title: "CloudCart Commerce" },
+    { ref: showreelItemRef5, initials: "USP", title: "University of São Paulo" },
   ];
 
 
@@ -131,6 +145,7 @@ export const SectionShowreel = () => {
     gsap.to(showreelItemRef2.current, { delay: 0.1, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: showreelItemRef2.current, start: "top 95%" } });
     gsap.to(showreelItemRef3.current, { delay: 0.2, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: showreelItemRef3.current, start: "top 95%" } });
     gsap.to(showreelItemRef4.current, { delay: 0.3, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: showreelItemRef4.current, start: "top 95%" } });
+    gsap.to(showreelItemRef5.current, { delay: 0.4, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: showreelItemRef5.current, start: "top 95%" } });
 
     let mouseX = 0;
     let mouseY = 0;
@@ -186,18 +201,13 @@ export const SectionShowreel = () => {
             <h1 className="subheadline white">My Work Experience</h1>
           </div>
           <div className="showreel-content-row">
-            {/* <div className="showreel-content-row-item opacity-blur" ref={showreelItemRef1} >
-              <img src="/logos/librechat.svg" className="showreel-content-row-item-image" alt="" />
-              <h1 className="subheadline white">LibreChat</h1>
-              <div className="showreel-content-row-item-grid" />
-            </div> */}
-            {showreelItems.map((item, idx) => (
+            {showreelItems.map((item) => (
               <div
                 className="showreel-content-row-item opacity-blur"
                 ref={item.ref}
                 key={item.title}
               >
-                <img src={item.img} className="showreel-content-row-item-image" alt="" />
+                <CompanyBadge initials={item.initials} />
                 <h1 className="subheadline white">{item.title}</h1>
                 <div className="showreel-content-row-item-grid" />
               </div>

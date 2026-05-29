@@ -191,7 +191,7 @@ export const SectionSkill = () => {
                             <div className="skills-industries-divider" />
                             <div className="skills-industries-item" >
                                 <div className="skills-industries-item-left">
-                                    <h2 className="small-subheadline white" >Frontend Development</h2>
+                                    <h2 className="small-subheadline white" >AI & LLM Systems</h2>
                                 </div>
                                 <div className="skills-industries-item-right">
                                     <div className="skills-industries-item-right-imagebox" ref={industryImageRef1} >
@@ -202,7 +202,7 @@ export const SectionSkill = () => {
                             <div className="skills-industries-divider" />
                             <div className="skills-industries-item">
                                 <div className="skills-industries-item-left">
-                                    <h2 className="small-subheadline white" >UI Libraries</h2>
+                                    <h2 className="small-subheadline white" >Full Stack Engineering</h2>
                                 </div>
                                 <div className="skills-industries-item-right">
                                     <div className="skills-industries-item-right-imagebox" ref={industryImageRef2} >
@@ -213,7 +213,7 @@ export const SectionSkill = () => {
                             <div className="skills-industries-divider" />
                             <div className="skills-industries-item">
                                 <div className="skills-industries-item-left">
-                                    <h2 className="small-subheadline white" >E-commerce && CMS</h2>
+                                    <h2 className="small-subheadline white" >Cloud & DevOps</h2>
                                 </div>
                                 <div className="skills-industries-item-right">
                                     <div className="skills-industries-item-right-imagebox" ref={industryImageRef3} >
@@ -224,7 +224,7 @@ export const SectionSkill = () => {
                             <div className="skills-industries-divider" />
                             <div className="skills-industries-item">
                                 <div className="skills-industries-item-left">
-                                    <h2 className="small-subheadline white" >Backend Development</h2>
+                                    <h2 className="small-subheadline white" >Data & Real-Time Platforms</h2>
                                 </div>
                                 <div className="skills-industries-item-right">
                                     <div className="skills-industries-item-right-imagebox" ref={industryImageRef4} >

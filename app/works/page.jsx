@@ -2,8 +2,8 @@ import "./works.css";
 import { WorksPageSection } from "./WorksPageSection";
 
 export const metadata = {
-  title: 'Zhan Xiu Wei | Works',
-  description: "Harnessing Cutting-Edge Visualization Technology to Transform Vision into Tailored Digital Reality.",
+  title: 'Lucas Oliveira | Works',
+  description: "Selected projects and case studies from Lucas Oliveira — AI, full stack, and platform engineering work.",
   openGraph: {
     title: 'Works',
   },

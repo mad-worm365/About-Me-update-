@@ -2,8 +2,8 @@ import "./contact.css";
 import { ContactPageSection } from "./ContactPageSection";
 
 export const metadata = {
-  title: 'Zhan Xiu Wei | Get in Touch',
-  description: "Harnessing Cutting-Edge Visualization Technology to Transform Vision into Tailored Digital Reality.",
+  title: 'Lucas Oliveira | Get in Touch',
+  description: "Contact Lucas Oliveira — Senior AI Full Stack Engineer based in Contagem, Minas Gerais, Brazil.",
   openGraph: {
     title: 'Get in Touch',
   },

@@ -2,9 +2,8 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Image from "next/image";
 import { Mail, MapPin } from "lucide-react";
-import { FaGithub, FaDiscord, FaTelegram, FaMicrosoft, FaTwitter } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 import "./css/footer.css";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -41,14 +40,14 @@ export const SectionFooter = () => {
                 <img
                   src="/images/logo.png"
                   className="footer-logo"
-                  alt="Zhan Xiu Wei Logo"
+                  alt="Lucas Oliveira Logo"
                   loading="lazy"
                 />
               </div>
               <div className="footer-branding-content">
-                <h1 className="subheadline white footer-title">Zhan Xiu Wei</h1>
+                <h1 className="subheadline white footer-title">Lucas Oliveira</h1>
                 <p className="description grey footer-description">
-                  Harnessing Cutting-Edge Visualization Technology to Transform Vision into Tailored Digital Reality
+                  Senior AI Full Stack Engineer building production LLM systems, scalable backends, and modern web platforms.
                 </p>
               </div>
             </div>
@@ -61,14 +60,13 @@ export const SectionFooter = () => {
                 <div className="footer-contact-icon-container">
                   <Mail strokeWidth={1.25} className="footer-contact-icon" />
                 </div>
-                <a href="mailto:geard.roas.tech@gmail.com" className="small-description grey hover-text-grey">zhan.tech.mail@gmail.com</a>
+                <a href="mailto:lucas.de.oliveira0512@outlook.com" className="small-description grey hover-text-grey">lucas.de.oliveira0512@outlook.com</a>
               </div>
               <div className="footer-contact-item">
                 <div className="footer-contact-icon-container">
                   <MapPin strokeWidth={1.25} className="footer-contact-icon" />
                 </div>
-                <span className="small-description grey">HK, Wan Chai District
-                </span>
+                <span className="small-description grey">Contagem, Minas Gerais, Brazil</span>
               </div>
             </div>
           </div>
@@ -79,13 +77,13 @@ export const SectionFooter = () => {
             <h2 className="footer-heading">Services</h2>
             <div className="footer-services-list">
               <div className="footer-service-item">
-                <span className="small-description grey">Frontend Development</span>
+                <span className="small-description grey">AI & LLM Integration</span>
               </div>
               <div className="footer-service-item">
-                <span className="small-description grey">Backend Development</span>
+                <span className="small-description grey">Full Stack Development</span>
               </div>
               <div className="footer-service-item">
-                <span className="small-description grey">Ecommerce Development(Shopify)</span>
+                <span className="small-description grey">Cloud & Platform Engineering</span>
               </div>
             </div>
           </div>
@@ -95,22 +93,10 @@ export const SectionFooter = () => {
       <div className="footer-divider" ref={centerRef1}></div>
 
       <div className="footer-content-bottom">
-        <p className="small-description grey copyright-text" ref={bottomRef1}>© {new Date().getFullYear()} Zhan Xiu Wei All Rights Reserved</p>
+        <p className="small-description grey copyright-text" ref={bottomRef1}>© {new Date().getFullYear()} Lucas Oliveira. All Rights Reserved.</p>
         <div className="footer-socials" ref={bottomRef2}>
-          <a href="https://github.com/g-r-te" target="_blank" rel="noreferrer" aria-label="GitHub" className="footer-social-link">
-            <FaGithub className="footer-socials-icon" />
-          </a>
-          <a href="https://discord.com/users/440826277197250560" target="_blank" rel="noreferrer" aria-label="Discord" className="footer-social-link">
-            <FaDiscord className="footer-socials-icon" />
-          </a>
-          <a href="https://t.me/DACE1013" target="_blank" rel="noreferrer" aria-label="Telegram" className="footer-social-link">
-            <FaTelegram className="footer-socials-icon" />
-          </a>
-          <a href="https://twitter.com/DAcE1013" target="_blank" rel="noreferrer" aria-label="Twitter" className="footer-social-link">
-            <FaTwitter className="footer-socials-icon" />
-          </a>
-          <a href="https://teams.live.com/l/invite/FBAW3PLnbwCTdnQMwI?v=g1" className="footer-social-link">
-            <FaMicrosoft className="footer-socials-icon" />
+          <a href="https://www.linkedin.com/in/lucas-oliveira-6a5a93378" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="footer-social-link">
+            <FaLinkedin className="footer-socials-icon" />
           </a>
         </div>
       </div>

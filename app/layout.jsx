@@ -3,26 +3,26 @@ import { Navigation } from "./Navigation";
 import Head from 'next/head';
 
 export const metadata = {
-  title: "Zhan Xiu Wei | Senior Frontend Developer Portfolio",
-  description: "Zhan Xiu Wei is a Senior Frontend Developer specializing in Next.js, React, and modern web technologies. View my portfolio of web development projects and professional experience.",
-  keywords: ["Zhan Xiu Wei", "Senior Frontend Developer", "Next.js", "Nuxt.js", "Vue.js", "React", "Angular", "Shopify", "Python", "TypeScript", "JavaScript", "Tailwind CSS", "HTML", "CSS", "Git", "GitHub", "Docker", "AWS", "CI/CD", "Agile", "Scrum"],
+  title: "Lucas Oliveira | Senior AI Full Stack Engineer Portfolio",
+  description: "Lucas Oliveira is a Senior AI Full Stack Engineer with 8+ years of experience building scalable web platforms, LLM-powered applications, and cloud-native systems with React, Next.js, Node.js, Python, and PostgreSQL.",
+  keywords: ["Lucas Oliveira", "Senior AI Full Stack Engineer", "AI Engineer", "Full Stack Developer", "React", "Next.js", "Node.js", "NestJS", "Python", "LangChain", "LLM", "RAG", "PostgreSQL", "Redis", "Apache Kafka", "TypeScript", "Kubernetes", "AWS", "Docker", "CI/CD"],
   image: "/images/logo-background.png",
   metadataBase: new URL("https://zhan-portfolio-v2.vercel.app/"),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Zhan Xiu Wei | Senior Frontend Developer Portfolio",
-    description: "Zhan Xiu Wei is a Senior Frontend Developer specializing in Next.js, React, and modern web technologies. View my portfolio of web development projects and professional experience.",
+    title: "Lucas Oliveira | Senior AI Full Stack Engineer Portfolio",
+    description: "Senior AI Full Stack Engineer specializing in LLM integration, scalable backends, and modern React/Next.js frontends.",
     url: 'https://zhan-portfolio-v2.vercel.app/',
-    siteName: 'Zhan Xiu Wei Portfolio',
+    siteName: 'Lucas Oliveira Portfolio',
     
     images: [
       {
         url: '/images/logo.png',
         width: 1200,
         height: 630,
-        alt: 'Zhan Xiu Wei - Senior Frontend Developer',
+        alt: 'Lucas Oliveira - Senior AI Full Stack Engineer',
       }
     ],
     locale: 'en_US',
@@ -30,8 +30,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zhan Xiu Wei | Senior Frontend Developer Portfolio',
-    description: 'Zhan Xiu Wei is a Senior Frontend Developer specializing in Next.js, React, and modern web technologies.',
+    title: 'Lucas Oliveira | Senior AI Full Stack Engineer Portfolio',
+    description: 'Senior AI Full Stack Engineer building production LLM systems, real-time platforms, and cloud-native applications.',
     images: ['/images/logo-background.png'],
   },
   verification: {
@@ -50,27 +50,31 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Zhan Xiu Wei",
-              "jobTitle": "Senior Frontend Developer",
+              "name": "Lucas Oliveira",
+              "jobTitle": "Senior AI Full Stack Engineer",
+              "email": "lucas.de.oliveira0512@outlook.com",
               "url": "https://zhan-portfolio-v2.vercel.app/",
               "sameAs": [
-                "https://github.com/g-r-te",
+                "https://www.linkedin.com/in/lucas-oliveira-6a5a93378",
               ],
               "knowsAbout": [
-                "Next.js",
                 "React",
-                "Vue.js",
-                "TypeScript",
-                "JavaScript",
-                "Frontend Development"
+                "Next.js",
+                "Node.js",
+                "Python",
+                "LangChain",
+                "LLM Integration",
+                "PostgreSQL",
+                "Kubernetes",
+                "AWS"
               ],
-              "description": "Senior Frontend Developer specializing in modern web technologies",
-              "image": "https://zhan-portfolio-v2.vercel.app//images/logo-background.png"
+              "description": "Senior AI Full Stack Engineer with 8+ years building AI-powered applications and scalable cloud-native platforms.",
+              "image": "https://zhan-portfolio-v2.vercel.app/images/logo-background.png"
             })
           }}
         />
-        <meta property="og:site_name" content="Zhan Xiu Wei Portfolio" />
-        <meta name="application-name" content="Zhan Xiu Wei Portfolio" />
+        <meta property="og:site_name" content="Lucas Oliveira Portfolio" />
+        <meta name="application-name" content="Lucas Oliveira Portfolio" />
       </Head>
       <body>
         <Navigation />

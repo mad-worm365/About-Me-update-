@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SplineScene } from "@/components/ui/splite"
 import { MorphingText } from "@/components/ui/morphing-text";
+import { HeroBackground } from "./HeroBackground";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -22,14 +23,14 @@ export const SectionHero = () => {
   const animationRef = useRef(null)
 
   const texts = [
-    "React.js && Next.js",
-    "Vue.js && Nuxt.js",
-    "Angular.js && Node.js",
-    "Svelte && SvelteKit",
-    "Shopify (Theme && App)",
-    "Flutter && React Native",
-    "Chrome Extension",
-    "Email Template",
+    "React && Next.js",
+    "Node.js && NestJS",
+    "Python && LangChain",
+    "LLM && RAG Systems",
+    "PostgreSQL && Redis",
+    "Kafka && WebSockets",
+    "Docker && Kubernetes",
+    "AWS && CI/CD",
   ];
 
   const initAnimations = useCallback(() => {
@@ -134,12 +135,7 @@ export const SectionHero = () => {
 
   return (
     <section className="hero">
-      <div className="w-full h-full absolute inset-0">
-        <SplineScene
-          scene="https://prod.spline.design/IvpvzUJpHli4Moba/scene.splinecode"
-          className="w-full h-full "
-        />
-      </div>
+      <HeroBackground />
       <div className="hero-content">
         <div className="hero-content-row">
           <div className="hero-content-left">
@@ -149,15 +145,16 @@ export const SectionHero = () => {
                   <div className="flex items-start justify-start width-full">
                     <MorphingText texts={texts} />
                   </div>
-                  I{"'"}m Zhan Xiu Wei.
+                  I{"'"}m Lucas Oliveira.
                   <br />
-                  Senior Frontend Engineer
+                  Senior AI Full Stack Engineer
                   <br />
                 </h3>
               </div>
               <p className="big-description grey opacity-blur" ref={descriptionRef} >
-                8 years of experience in frontend development.<br />
-                Building scalable and user-friendly web and mobile applications.</p>
+                8+ years delivering scalable web platforms, data-driven systems, and AI-powered applications in production.<br />
+                From RAG pipelines and LLM orchestration to resilient backends and polished React frontends.
+              </p>
             </div>
           </div>
           <div className="hero-content-right" >
