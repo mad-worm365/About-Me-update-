@@ -8,7 +8,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import SplashCursor from './Main/cursor/cursorAnimation';
 import GlowCursor from './Main/cursor/GlowCursor';
 import BubbleCursor from './Main/cursor/BubbleCursor';
-import SmoothFollower from './Main/cursor/smoothCursor';
+import SmoothFollower from './Main/cursor/SmoothCursor';
 import CanvasCursor from './Main/cursor/CanvasCursor';
 
 export const Navigation = () => {
