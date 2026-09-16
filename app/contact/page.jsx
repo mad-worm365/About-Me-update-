@@ -2,8 +2,8 @@ import "./contact.css";
 import { ContactPageSection } from "./ContactPageSection";
 
 export const metadata = {
-  title: 'Lucas Oliveira | Get in Touch',
-  description: "Contact Lucas Oliveira — Senior AI Full Stack Engineer based in Contagem, Minas Gerais, Brazil.",
+  title: 'Jonny Steven | Get in Touch',
+  description: "Contact Jonny Steven — Senior AI Full Stack Engineer based in Stockholm, Sweden.",
   openGraph: {
     title: 'Get in Touch',
   },

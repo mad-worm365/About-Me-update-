@@ -38,14 +38,14 @@ export const SectionFooter = () => {
             <div className="footer-logo-wrapper">
               <div className="footer-logo-container">
                 <img
-                  src="/images/logo.png"
+                  src="/images/logo.webp"
                   className="footer-logo"
-                  alt="Lucas Oliveira Logo"
+                  alt="Jonny Steven Logo"
                   loading="lazy"
                 />
               </div>
               <div className="footer-branding-content">
-                <h1 className="subheadline white footer-title">Lucas Oliveira</h1>
+                <h1 className="subheadline white footer-title">Jonny Steven</h1>
                 <p className="description grey footer-description">
                   Senior AI Full Stack Engineer building production LLM systems, scalable backends, and modern web platforms.
                 </p>
@@ -60,13 +60,13 @@ export const SectionFooter = () => {
                 <div className="footer-contact-icon-container">
                   <Mail strokeWidth={1.25} className="footer-contact-icon" />
                 </div>
-                <a href="mailto:lucas.de.oliveira0512@outlook.com" className="small-description grey hover-text-grey">lucas.de.oliveira0512@outlook.com</a>
+                <a href="mailto:jonny.steven.js@gmail.com" className="small-description grey hover-text-grey">jonny.steven.js@gmail.com</a>
               </div>
               <div className="footer-contact-item">
                 <div className="footer-contact-icon-container">
                   <MapPin strokeWidth={1.25} className="footer-contact-icon" />
                 </div>
-                <span className="small-description grey">Contagem, Minas Gerais, Brazil</span>
+                <span className="small-description grey">Stockholm, Sweden</span>
               </div>
             </div>
           </div>
@@ -93,9 +93,9 @@ export const SectionFooter = () => {
       <div className="footer-divider" ref={centerRef1}></div>
 
       <div className="footer-content-bottom">
-        <p className="small-description grey copyright-text" ref={bottomRef1}>© {new Date().getFullYear()} Lucas Oliveira. All Rights Reserved.</p>
+        <p className="small-description grey copyright-text" ref={bottomRef1}>© {new Date().getFullYear()} Jonny Steven. All Rights Reserved.</p>
         <div className="footer-socials" ref={bottomRef2}>
-          <a href="https://www.linkedin.com/in/lucas-oliveira-6a5a93378" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="footer-social-link">
+          <a href="https://www.linkedin.com/in/jonny-steven-835023b7" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="footer-social-link">
             <FaLinkedin className="footer-socials-icon" />
           </a>
         </div>

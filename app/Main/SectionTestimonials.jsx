@@ -35,7 +35,7 @@ export const SectionTestimonials = () => {
     const testimonials = [
         {
             name: "Michael Rodriguez",
-            role: "Engineering Director at Nexus Data Solutions",
+            role: "Engineering Director at Threekit",
             img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
             text: "Delivered our production RAG platform and LLM orchestration stack—cut retrieval latency dramatically and made AI features reliable at scale."
         },
@@ -59,7 +59,7 @@ export const SectionTestimonials = () => {
         },
         {
             name: "James Wilson",
-            role: "CTO at Nexus Data Solutions",
+            role: "CTO at Threekit",
             img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
             text: "A full-stack leader on AI and platform work—from Kafka pipelines and Kubernetes deployments to polished React systems in production."
         },

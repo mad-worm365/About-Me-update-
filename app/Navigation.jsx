@@ -8,7 +8,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import SplashCursor from './Main/cursor/cursorAnimation';
 import RainbowCursor from './Main/cursor/RainbowCursor';
 import BubbleCursor from './Main/cursor/BubbleCursor';
-// import SmoothFollower from './Main/cursor/smoothCursor';
+import SmoothFollower from './Main/cursor/smoothCursor';
 import CanvasCursor from './Main/cursor/CanvasCursor';
 
 export const Navigation = () => {
@@ -142,6 +142,7 @@ export const Navigation = () => {
         { value: "splash", label: "Splash Effect", icon: <Sparkles size={16} /> },
         { value: "rainbow", label: "Rainbow Trail", icon: <MousePointerClick size={16} /> },
         { value: "bubble", label: "Bubble Effect", icon: <Circle size={16} /> },
+        { value: "smooth", label: "Smooth Effect", icon: <MousePointer size={16} /> },
     ];
 
     return (
@@ -150,13 +151,13 @@ export const Navigation = () => {
             {selectedCursor === "splash" && <SplashCursor />}
             {selectedCursor === "rainbow" && <RainbowCursor />}
             {selectedCursor === "bubble" && <BubbleCursor />}
-            {/* {selectedCursor === "smooth" && <SmoothFollower />} */}
+            {selectedCursor === "smooth" && <SmoothFollower />}
 
             <div className="navigation-wrapper">
                 <div className="navigation-inside" ref={navigationBar} >
                     <div className="navigation-inside-left">
                         <Link href="/">
-                            <img src="/images/logo.png" className="navigation-inside-left-image" alt="" />
+                            <img src="/images/logo.webp" className="navigation-inside-left-image" alt="" />
                         </Link>
                     </div>
                     <div

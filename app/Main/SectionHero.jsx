@@ -1,26 +1,28 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import dynamic from "next/dynamic";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { SplineScene } from "@/components/ui/splite"
 import { MorphingText } from "@/components/ui/morphing-text";
 import { HeroBackground } from "./HeroBackground";
+
+const HeroFlowerCanvas = dynamic(() => import("./HeroFlowerCanvas"), {
+  ssr: false,
+  loading: () => <div className="hero-flower-canvas hero-flower-canvas--loading" />,
+});
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export const SectionHero = () => {
-
-  const titleRef = useRef()
-  const descriptionRef = useRef()
-  const buttonRef1 = useRef()
-  const buttonCircleRef1 = useRef()
-  const buttonRef2 = useRef()
-  const logosWrapperRef = useRef()
-  const cursor = useRef()
-  const [showCursor, setShowCursor] = useState(false)
-  const animationRef = useRef(null)
+  const titleRef = useRef();
+  const descriptionRef = useRef();
+  const buttonRef1 = useRef();
+  const buttonCircleRef1 = useRef();
+  const buttonRef2 = useRef();
+  const logosWrapperRef = useRef();
+  const cursor = useRef();
+  const [showCursor, setShowCursor] = useState(false);
+  const animationRef = useRef(null);
 
   const texts = [
     "React && Next.js",
@@ -36,43 +38,56 @@ export const SectionHero = () => {
   const initAnimations = useCallback(() => {
     if (!titleRef.current) return;
 
-    gsap.set(titleRef.current, { opacity: 1 })
+    gsap.set(titleRef.current, { opacity: 1 });
 
     const titleSplit = new SplitText(titleRef.current, { type: "chars" });
     const titleAnimation = gsap.fromTo(
       titleSplit.chars,
-      { 'will-change': 'opacity, transform', filter: 'blur(8px)', opacity: 0, yPercent: 50 },
-      { delay: 0.4, opacity: 1, filter: 'blur(0px)', yPercent: 0, stagger: 0.02, duration: 0.75, ease: "power1" }
+      {
+        "will-change": "opacity, transform",
+        filter: "blur(8px)",
+        opacity: 0,
+        yPercent: 50,
+      },
+      {
+        delay: 0.4,
+        opacity: 1,
+        filter: "blur(0px)",
+        yPercent: 0,
+        stagger: 0.02,
+        duration: 0.75,
+        ease: "power1",
+      },
     );
 
     const descriptionAnimation = gsap.to(descriptionRef.current, {
       opacity: 1,
-      filter: 'blur(0px)',
+      filter: "blur(0px)",
       duration: 1,
-      delay: 0.9
+      delay: 0.9,
     });
 
     const button1Animation = gsap.to(buttonRef1.current, {
       delay: 1.1,
       opacity: 1,
-      filter: 'blur(0px)',
+      filter: "blur(0px)",
       duration: 0.5,
-      ease: "power1"
+      ease: "power1",
     });
 
     const button2Animation = gsap.to(buttonRef2.current, {
       delay: 1.4,
       opacity: 1,
-      filter: 'blur(0px)',
+      filter: "blur(0px)",
       duration: 0.5,
-      ease: "power1"
+      ease: "power1",
     });
 
     const logosAnimation = gsap.to(logosWrapperRef.current, {
       opacity: 1,
-      filter: 'blur(0px)',
+      filter: "blur(0px)",
       duration: 1,
-      delay: 0.9
+      delay: 0.9,
     });
 
     // Store animations for cleanup
@@ -82,7 +97,7 @@ export const SectionHero = () => {
       button1Animation,
       button2Animation,
       logosAnimation,
-      titleSplit
+      titleSplit,
     };
   }, []);
 
@@ -92,7 +107,14 @@ export const SectionHero = () => {
     return () => {
       // Cleanup animations
       if (animationRef.current) {
-        const { titleAnimation, descriptionAnimation, button1Animation, button2Animation, logosAnimation, titleSplit } = animationRef.current;
+        const {
+          titleAnimation,
+          descriptionAnimation,
+          button1Animation,
+          button2Animation,
+          logosAnimation,
+          titleSplit,
+        } = animationRef.current;
         titleAnimation.kill();
         descriptionAnimation.kill();
         button1Animation.kill();
@@ -105,21 +127,21 @@ export const SectionHero = () => {
 
   const handleMouseMove = useCallback((event) => {
     if (!cursor.current) return;
-    
+
     const mouseX = event.clientX;
     const mouseY = event.clientY;
-    
+
     gsap.to(cursor.current, {
       left: mouseX,
       top: mouseY,
       duration: 0.1,
-      ease: "power2.out"
+      ease: "power2.out",
     });
   }, []);
 
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [handleMouseMove]);
 
   useEffect(() => {
@@ -129,7 +151,7 @@ export const SectionHero = () => {
       autoAlpha: showCursor ? 1 : 0,
       scale: showCursor ? 1 : 0,
       duration: 0.3,
-      ease: showCursor ? 'power3.out' : 'power3.in'
+      ease: showCursor ? "power3.out" : "power3.in",
     });
   }, [showCursor]);
 
@@ -141,31 +163,33 @@ export const SectionHero = () => {
           <div className="hero-content-left">
             <div className="hero-textbox">
               <div className="hero-titlebox">
-                <h3 className="headline hero-headline white" ref={titleRef} >
+                <h3 className="headline hero-headline white" ref={titleRef}>
                   <div className="flex items-start justify-start width-full">
                     <MorphingText texts={texts} />
                   </div>
-                  I{"'"}m Lucas Oliveira.
+                  I{"'"}m Jonny Steven
                   <br />
                   Senior AI Full Stack Engineer
                   <br />
                 </h3>
               </div>
-              <p className="big-description grey opacity-blur" ref={descriptionRef} >
-                8+ years delivering scalable web platforms, data-driven systems, and AI-powered applications in production.<br />
-                From RAG pipelines and LLM orchestration to resilient backends and polished React frontends.
+              <p
+                className="big-description grey opacity-blur"
+                ref={descriptionRef}
+              >
+                Full-Stack Developer with nearly 8 years of experience building
+                web applications and AI-powered solutions. <br />
+                Skilled in React, Next.js, TypeScript, Node.js, Python, FastAPI,
+                AWS, and OpenAI. Experienced in building scalable applications,
+                APIs, and automation tools.
               </p>
             </div>
           </div>
-          <div className="hero-content-right" >
-            <SplineScene
-              scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-              className="w-full h-full"
-            />
+          <div className="hero-content-right">
+            <HeroFlowerCanvas />
           </div>
-
         </div>
-      </div >
-    </section >
+      </div>
+    </section>
   );
 };

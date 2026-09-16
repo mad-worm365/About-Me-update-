@@ -25,9 +25,9 @@ export const SectionShowreel = () => {
             Designed and shipped a production RAG system across 20+ enterprise data sources, cutting retrieval latency ~55% through embedding optimization and vector index tuning. Built LLM orchestration with LangChain for tool calling, memory, and multi-step reasoning; delivered AI chatbots handling ~10K daily interactions and improving support resolution ~45%. Architected cloud-native microservices (Node.js, NestJS, Python, Go) supporting ~50K RPS, Kafka event pipelines, PostgreSQL/Redis optimizations (~70% on critical queries), and real-time WebSocket features for 5,000+ concurrent users. Containerized workloads on Kubernetes with CI/CD, observability via Datadog, and on-call platform reliability practices.
           </p>
           <div className="flex flex-row gap-4 items-center">
-            <CompanyBadge initials="ND" />
+            <CompanyBadge initials="TH" />
             <div>
-              <p className="text-xl font-bold text-start text-neutral-500">Nexus Data Solutions</p>
+              <p className="text-xl font-bold text-start text-neutral-500">Threekit</p>
               <p className="text-sm text-neutral-400">Austin, Texas, USA</p>
             </div>
           </div>
@@ -108,7 +108,7 @@ export const SectionShowreel = () => {
             <CompanyBadge initials="USP" />
             <div>
               <p className="text-xl font-bold text-start text-neutral-500">University of São Paulo</p>
-              <p className="text-sm text-neutral-400">São Paulo, Brazil</p>
+              <p className="text-sm text-neutral-400">Stockholm, Sweden</p>
             </div>
           </div>
         </div>
@@ -126,7 +126,7 @@ export const SectionShowreel = () => {
   const titleRef = useRef()
 
   const showreelItems = [
-    { ref: showreelItemRef1, initials: "ND", title: "Nexus Data Solutions" },
+    { ref: showreelItemRef1, initials: "TH", title: "Threekit" },
     { ref: showreelItemRef2, initials: "PA", title: "Pivot Analytics Corp" },
     { ref: showreelItemRef3, initials: "VT", title: "Vortex Technologies" },
     { ref: showreelItemRef4, initials: "CC", title: "CloudCart Commerce" },
@@ -208,7 +208,7 @@ export const SectionShowreel = () => {
                 key={item.title}
               >
                 <CompanyBadge initials={item.initials} />
-                <h1 className="subheadline white">{item.title}</h1>
+                <h2 className="showreel-content-row-item-title">{item.title}</h2>
                 <div className="showreel-content-row-item-grid" />
               </div>
             ))}

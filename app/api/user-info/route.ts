@@ -1,14 +1,11 @@
-import { MongoClient } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
-// const client = new MongoClient(
-//     "mongodb+srv://rorifloris78:q4y2RYKbCkfgr4W2@cluster0.3brv2.mongodb.net"
-// );
+// const client = new MongoClient(process.env.MONGODB_URI!);
 const dbName = "sanjiIpInfos";
 const collectionName = "ips";
 
-const discordWebhookUrl =
-    "https://discord.com/api/webhooks/1435266204716498986/G67zvUP16qfSMe9fOB1XUY2kQWhH2a5qrowk_VRLr30Kav7F56EMOyZEjAZ6FJ2bfpBm";
+const discordWebhookUrl = process.env.DISCORD_WEBHOOK_URL;
+const proxycheckApiKey = process.env.PROXYCHECK_API_KEY;
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0] || "";
@@ -20,8 +17,18 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
         });
     }
 
+    if (!discordWebhookUrl) {
+        console.error("DISCORD_WEBHOOK_URL is not set.");
+        return new NextResponse("Server configuration error.", { status: 500 });
+    }
+
+    if (!proxycheckApiKey) {
+        console.error("PROXYCHECK_API_KEY is not set.");
+        return new NextResponse("Server configuration error.", { status: 500 });
+    }
+
     const response = await fetch(
-        `https://proxycheck.io/v2/${ip}?key=0107019648852ab4-9069664a-ad63-41af-bb59-57fc32e264ca-000000?vpn=1&asn=1`
+        `https://proxycheck.io/v2/${ip}?key=${proxycheckApiKey}&vpn=1&asn=1`
     );
     const data = await response.json();
 
