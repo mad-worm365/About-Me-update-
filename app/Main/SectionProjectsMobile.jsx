@@ -76,6 +76,11 @@ export const SectionProjectsMobile = () => {
           <div className="projects-carousel" ref={emblaRef} >
             <div className="projects-carousel-row">
               <div className="projects-carousel-item">
+                <a href="https://www.kohler.com" target="_blank" rel="noopener noreferrer">
+                  <Image src="/mockups/kohler.png" width={1920} height={1080} unoptimized className="projects-carousel-item-image" alt="Kohler.com project" />
+                </a>
+              </div>
+              <div className="projects-carousel-item">
                 <Image src="/mockups/heave.webp" width={1920} height={1080} unoptimized className="projects-carousel-item-image" alt="Heavecorp project" />
               </div>
               <div className="projects-carousel-item">

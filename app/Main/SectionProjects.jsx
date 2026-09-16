@@ -196,7 +196,7 @@ export const SectionProjects = () => {
                   {/* <div className="subpage-titlebox-gradient" /> */}
                   <h1 className="headline white" ref={titleRef} >My Recent Projects</h1>
                 </div>
-                <p className="description grey opacity-blur" ref={descriptionRef} >These are my previous projects. (Web || Shopify)</p>
+                <p className="description grey opacity-blur" ref={descriptionRef} >Latest work from Threekit — including Kohler.com visual commerce experiences.</p>
               </div>
               <div className="experiences-content-top-divider" ref={lineRef} />
             </div>
@@ -205,6 +205,34 @@ export const SectionProjects = () => {
               <div className="experiences-carousel" ref={emblaRef2} >
                 <div className="experiences-carousel-row">
                   <div className="experiences-item-padding" />
+                  <a
+                    className="experiences-item"
+                    href="https://www.kohler.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="experiences-item-content" >
+                      <div className="experiences-item-content-textbox">
+                        <h2 className="subheadline white" >KOHLER</h2>
+                        <div className="experiences-item-content-textbox-row">
+                          <div className="experiences-item-content-textbox-button">
+                            <p className="small-description white" >Threekit</p>
+                          </div>
+                          <div className="experiences-item-content-textbox-button">
+                            <p className="small-description white" >React</p>
+                          </div>
+                          <div className="experiences-item-content-textbox-button">
+                            <p className="small-description white" >3D / WebGL</p>
+                          </div>
+                          <div className="experiences-item-content-textbox-button">
+                            <p className="small-description white" >TypeScript</p>
+                          </div>
+                        </div>
+                      </div>
+                      <Image src="/mockups/kohler.png" className="experiences-item-content-image" width={750} height={750} unoptimized loading="lazy" alt="Kohler.com — 3D product experiences" />
+                    </div>
+                    <div className="experiences-item-border" />
+                  </a>
                   <div className="experiences-item" >
                     <div className="experiences-item-content" >
                       <div className="experiences-item-content-textbox">

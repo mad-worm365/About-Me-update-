@@ -6,7 +6,7 @@ import gsap from "gsap";
 import Link from "next/link";
 import { useRouter, usePathname } from 'next/navigation';
 import SplashCursor from './Main/cursor/cursorAnimation';
-import RainbowCursor from './Main/cursor/RainbowCursor';
+import GlowCursor from './Main/cursor/GlowCursor';
 import BubbleCursor from './Main/cursor/BubbleCursor';
 import SmoothFollower from './Main/cursor/smoothCursor';
 import CanvasCursor from './Main/cursor/CanvasCursor';
@@ -76,7 +76,11 @@ export const Navigation = () => {
     useEffect(() => {
         // Load saved cursor preference from localStorage
         const savedCursor = localStorage.getItem('selectedCursor');
-        if (savedCursor) {
+        if (savedCursor === 'rainbow') {
+            // Migrate removed rainbow option to glow
+            setSelectedCursor('glow');
+            localStorage.setItem('selectedCursor', 'glow');
+        } else if (savedCursor) {
             setSelectedCursor(savedCursor);
         } else {
             // If no saved preference, set default to canvas
@@ -140,7 +144,7 @@ export const Navigation = () => {
     const cursorOptions = [
         { value: "canvas", label: "Default Cursor", icon: <MousePointer size={16} /> },
         { value: "splash", label: "Splash Effect", icon: <Sparkles size={16} /> },
-        { value: "rainbow", label: "Rainbow Trail", icon: <MousePointerClick size={16} /> },
+        { value: "glow", label: "Glow Trail", icon: <MousePointerClick size={16} /> },
         { value: "bubble", label: "Bubble Effect", icon: <Circle size={16} /> },
         { value: "smooth", label: "Smooth Effect", icon: <MousePointer size={16} /> },
     ];
@@ -149,7 +153,28 @@ export const Navigation = () => {
         <>
             {selectedCursor === "canvas" && <CanvasCursor />}
             {selectedCursor === "splash" && <SplashCursor />}
-            {selectedCursor === "rainbow" && <RainbowCursor />}
+            {selectedCursor === "glow" && (
+                <GlowCursor
+                    overlay
+                    color="#67E8F9"
+                    secondaryColor="#A78BFA"
+                    trailLength={40}
+                    trailWidth={8}
+                    trailTaper={0.8}
+                    followSpeed={0.16}
+                    glowIntensity={3.15}
+                    glowSpread={1.2}
+                    hotspot={0.65}
+                    brightness={2.5}
+                    opacity={1}
+                    pulseSpeed={1.1}
+                    noiseStrength={0.035}
+                    idleFade
+                    idleTimeout={700}
+                    fadeDuration={900}
+                    blendMode="screen"
+                />
+            )}
             {selectedCursor === "bubble" && <BubbleCursor />}
             {selectedCursor === "smooth" && <SmoothFollower />}
 

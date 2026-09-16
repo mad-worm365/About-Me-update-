@@ -22,13 +22,13 @@ export const SectionShowreel = () => {
             Senior Full Stack Engineer – AI, Backend & Platform Architecture
           </p>
           <p className="text-neutral-200 text-sm md:text-lg font-normal mb-8">
-            Designed and shipped a production RAG system across 20+ enterprise data sources, cutting retrieval latency ~55% through embedding optimization and vector index tuning. Built LLM orchestration with LangChain for tool calling, memory, and multi-step reasoning; delivered AI chatbots handling ~10K daily interactions and improving support resolution ~45%. Architected cloud-native microservices (Node.js, NestJS, Python, Go) supporting ~50K RPS, Kafka event pipelines, PostgreSQL/Redis optimizations (~70% on critical queries), and real-time WebSocket features for 5,000+ concurrent users. Containerized workloads on Kubernetes with CI/CD, observability via Datadog, and on-call platform reliability practices.
+            Built and scaled Threekit&apos;s visual commerce platform for enterprise manufacturers in the US — powering real-time 3D product configuration, AR experiences, and high-traffic e-commerce integrations. Led full-stack delivery on customer-facing experiences including Kohler.com (3D faucet visualization, finish configuration, and immersive product discovery). Designed production RAG/LLM orchestration, cloud-native microservices (Node.js, NestJS, Python), Kafka pipelines, and Kubernetes deployments supporting large concurrent catalogs and configuration workloads.
           </p>
           <div className="flex flex-row gap-4 items-center">
             <CompanyBadge initials="TH" />
             <div>
               <p className="text-xl font-bold text-start text-neutral-500">Threekit</p>
-              <p className="text-sm text-neutral-400">Austin, Texas, USA</p>
+              <p className="text-sm text-neutral-400">United States</p>
             </div>
           </div>
         </div>
@@ -127,10 +127,9 @@ export const SectionShowreel = () => {
 
   const showreelItems = [
     { ref: showreelItemRef1, initials: "TH", title: "Threekit" },
-    { ref: showreelItemRef2, initials: "PA", title: "Pivot Analytics Corp" },
-    { ref: showreelItemRef3, initials: "VT", title: "Vortex Technologies" },
-    { ref: showreelItemRef4, initials: "CC", title: "CloudCart Commerce" },
-    { ref: showreelItemRef5, initials: "USP", title: "University of São Paulo" },
+    { ref: showreelItemRef2, initials: "NW", title: "NextGen Web Solutions" },
+    { ref: showreelItemRef3, initials: "IT", title: "Innovatech" },
+    { ref: showreelItemRef5, initials: "SU", title: "Saxion University of Applied Sciences" },
   ];
 
 

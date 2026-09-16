@@ -6,9 +6,9 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import { MorphingText } from "@/components/ui/morphing-text";
 import { HeroBackground } from "./HeroBackground";
 
-const HeroFlowerCanvas = dynamic(() => import("./HeroFlowerCanvas"), {
+const Strands = dynamic(() => import("./Strands"), {
   ssr: false,
-  loading: () => <div className="hero-flower-canvas hero-flower-canvas--loading" />,
+  loading: () => <div className="hero-strands hero-strands--loading" />,
 });
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -179,14 +179,47 @@ export const SectionHero = () => {
               >
                 Full-Stack Developer with nearly 8 years of experience building
                 web applications and AI-powered solutions. <br />
-                Skilled in React, Next.js, TypeScript, Node.js, Python, FastAPI,
+                Most recently at Threekit (US), shipping visual commerce for
+                enterprise brands including{" "}
+                <a
+                  href="https://www.kohler.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="white"
+                  style={{ textDecoration: "underline" }}
+                >
+                  Kohler.com
+                </a>
+                . Skilled in React, Next.js, TypeScript, Node.js, Python, FastAPI,
                 AWS, and OpenAI. Experienced in building scalable applications,
                 APIs, and automation tools.
               </p>
             </div>
           </div>
           <div className="hero-content-right">
-            <HeroFlowerCanvas />
+            <div className="hero-strands">
+              <Strands
+                vertical
+                colors={["#64ec48", "#ed3aa4", "#00d3f3"]}
+                count={4}
+                speed={0.3}
+                amplitude={0.9}
+                waviness={1.6}
+                thickness={0.4}
+                glow={1.75}
+                taper={4.6}
+                spread={2.3}
+                intensity={0.7}
+                saturation={1.5}
+                opacity={1}
+                scale={2.3}
+                glass={false}
+                refraction={1.7}
+                dispersion={2.7}
+                glassSize={1}
+                hueShift={0.84}
+              />
+            </div>
           </div>
         </div>
       </div>
