@@ -1,88 +1,113 @@
 "use client";
-import { ReactLenis, useLenis } from 'lenis/react'
+import dynamic from "next/dynamic";
+import { ReactLenis, useLenis } from "lenis/react";
+import { useEffect, useState } from "react";
 import { SectionHero } from "./SectionHero";
-import { SectionFooter } from "./SectionFooter";
-import { SectionShowreel } from "./SectionShowreel";
-import { SectionTestimonials } from "./SectionTestimonials";
-// import { SectionTechstack } from "./SectionTechstack";
-import { SectionFlower } from "./SectionFlower";
-import { SectionServices } from "./SectionServices";
-import { SectionProjects } from "./SectionProjects";
-import { SectionProjectsMobile } from "./SectionProjectsMobile";
-import { SectionKPI } from "./SectionKPI";
 import "./main.css";
-import { useEffect, useLayoutEffect, useState } from 'react';
-import { useProgress } from "@react-three/drei";
-import { SectionSkill } from "./SectionSkill";
 import Loading from "../loading";
 
+// Below-the-fold sections: load after hero paints
+const SectionShowreel = dynamic(
+  () =>
+    import("./SectionShowreel").then((m) => ({ default: m.SectionShowreel })),
+  { ssr: false }
+);
+const SectionProjects = dynamic(
+  () =>
+    import("./SectionProjects").then((m) => ({ default: m.SectionProjects })),
+  { ssr: false }
+);
+const SectionProjectsMobile = dynamic(
+  () =>
+    import("./SectionProjectsMobile").then((m) => ({
+      default: m.SectionProjectsMobile,
+    })),
+  { ssr: false }
+);
+const SectionSkill = dynamic(
+  () => import("./SectionSkill").then((m) => ({ default: m.SectionSkill })),
+  { ssr: false }
+);
+const SectionTestimonials = dynamic(
+  () =>
+    import("./SectionTestimonials").then((m) => ({
+      default: m.SectionTestimonials,
+    })),
+  { ssr: false }
+);
+const SectionFlower = dynamic(
+  () => import("./SectionFlower").then((m) => ({ default: m.SectionFlower })),
+  { ssr: false }
+);
+const SectionFooter = dynamic(
+  () => import("./SectionFooter").then((m) => ({ default: m.SectionFooter })),
+  { ssr: false }
+);
+
+const LOADING_MIN_MS = 600;
+const LOADING_MAX_MS = 1800;
+
 const Main = () => {
-  const { progress } = useProgress();
   const [isLoading, setIsLoading] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
+  const [showBelowFold, setShowBelowFold] = useState(false);
   const lenis = useLenis();
 
-  const [userInfo, setUserInfo] = useState(null);
-
+  // Fast loading gate — never block on remote Spline/assets
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      if (userInfo) return;
+    const started = performance.now();
+    let cancelled = false;
 
-      const response = await fetch("/api/user-info");
-      const data = await response.json();
-      setUserInfo(data);
-    };
+    // Start streaming below-the-fold chunks ASAP (don't wait for loader)
+    const belowFoldTimer = window.setTimeout(() => {
+      if (!cancelled) setShowBelowFold(true);
+    }, 150);
 
-    fetchUserInfo();
-  }, [userInfo]);
-
-  useLayoutEffect(() => {
-    if (progress === 100) {
+    const finish = () => {
+      if (cancelled) return;
       setFadeOut(true);
       lenis?.start();
-    }
-  }, [progress, lenis]);
-
-  useEffect(() => {
-    // Function to preload all images and assets
-    const preloadAssets = async () => {
-      try {
-        // Add all your asset URLs here
-        const assets = [
-          // Spline scenes
-          'https://prod.spline.design/IvpvzUJpHli4Moba/scene.splinecode',
-          'https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode',
-          // Add other assets like images, etc.
-        ];
-
-        // Create an array of promises for loading assets
-        const loadPromises = assets.map(url => {
-          return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = resolve;
-            img.onerror = reject;
-            img.src = url;
-          });
-        });
-
-        // Wait for all assets to load
-        await Promise.all(loadPromises);
-
-        // Add a small delay to ensure smooth transition
-        setTimeout(() => {
-          setFadeOut(true);
-          setTimeout(() => {
-            setIsLoading(false);
-          }, 500); // Match this with your CSS transition duration
-        }, 500);
-      } catch (error) {
-        console.error('Error preloading assets:', error);
-        // Even if there's an error, we should show the content
-        setIsLoading(false);
-      }
+      window.setTimeout(() => {
+        if (!cancelled) setIsLoading(false);
+      }, 350);
     };
 
-    preloadAssets();
+    const onReady = () => {
+      const elapsed = performance.now() - started;
+      const wait = Math.max(0, LOADING_MIN_MS - elapsed);
+      window.setTimeout(finish, wait);
+    };
+
+    if (document.readyState === "complete") {
+      onReady();
+    } else {
+      window.addEventListener("load", onReady, { once: true });
+    }
+
+    // Hard cap so a slow asset never traps users on the loader
+    const maxTimer = window.setTimeout(finish, LOADING_MAX_MS);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(maxTimer);
+      window.clearTimeout(belowFoldTimer);
+      window.removeEventListener("load", onReady);
+    };
+  }, [lenis]);
+
+  // Analytics ping — idle, non-blocking
+  useEffect(() => {
+    const ping = () => {
+      fetch("/api/user-info").catch(() => {});
+    };
+
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(ping, { timeout: 4000 });
+      return () => window.cancelIdleCallback?.(id);
+    }
+
+    const t = window.setTimeout(ping, 2500);
+    return () => window.clearTimeout(t);
   }, []);
 
   return (
@@ -95,26 +120,24 @@ const Main = () => {
         </div>
       )}
       <SectionHero />
-      <div className="normal-padding" />
-      <SectionShowreel />
-      <div className="border-padding">
-        <div className="section-border"></div>
-      </div>
-      {/* <SectionServices /> */}
-      {/* <div className="normal-padding" /> */}
-      <SectionProjects />
-      <SectionProjectsMobile />
-      {/* <div className="normal-padding" /> */}
-      {/* <SectionTechstack /> */}
-      <SectionSkill />
-      <div className="normal-padding" />
-      <SectionTestimonials />
-      {/* <div className="normal-padding" />
-      <SectionKPI /> */}
-      <div className="normal-padding" />
-      <SectionFlower />
-      <div className="normal-padding" />
-      <SectionFooter />
+      {showBelowFold && (
+        <>
+          <div className="normal-padding" />
+          <SectionShowreel />
+          <div className="border-padding">
+            <div className="section-border"></div>
+          </div>
+          <SectionProjects />
+          <SectionProjectsMobile />
+          <SectionSkill />
+          <div className="normal-padding" />
+          <SectionTestimonials />
+          <div className="normal-padding" />
+          <SectionFlower />
+          <div className="normal-padding" />
+          <SectionFooter />
+        </>
+      )}
     </ReactLenis>
   );
 };

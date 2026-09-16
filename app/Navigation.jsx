@@ -1,15 +1,16 @@
 "use client";
 import { ArrowUpRight, ChevronDown, MousePointer, Sparkles, Circle, MousePointerClick } from "lucide-react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Link from "next/link";
 import { useRouter, usePathname } from 'next/navigation';
-import SplashCursor from './Main/cursor/cursorAnimation';
-import GlowCursor from './Main/cursor/GlowCursor';
-import BubbleCursor from './Main/cursor/BubbleCursor';
-import SmoothFollower from './Main/cursor/SmoothCursor';
-import CanvasCursor from './Main/cursor/CanvasCursor';
+
+const CanvasCursor = dynamic(() => import('./Main/cursor/CanvasCursor'), { ssr: false });
+const SplashCursor = dynamic(() => import('./Main/cursor/cursorAnimation'), { ssr: false });
+const GlowCursor = dynamic(() => import('./Main/cursor/GlowCursor'), { ssr: false });
+const BubbleCursor = dynamic(() => import('./Main/cursor/BubbleCursor'), { ssr: false });
+const SmoothFollower = dynamic(() => import('./Main/cursor/SmoothCursor'), { ssr: false });
 
 export const Navigation = () => {
 

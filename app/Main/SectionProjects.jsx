@@ -229,7 +229,7 @@ export const SectionProjects = () => {
                           </div>
                         </div>
                       </div>
-                      <Image src="/mockups/kohler.png" className="experiences-item-content-image" width={750} height={750} unoptimized loading="lazy" alt="Kohler.com — 3D product experiences" />
+                      <Image src="/mockups/kohler.png" className="experiences-item-content-image" width={750} height={750} loading="lazy" sizes="40vw" alt="Kohler.com — 3D product experiences" />
                     </div>
                     <div className="experiences-item-border" />
                   </a>

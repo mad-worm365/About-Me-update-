@@ -3,23 +3,27 @@
 @font-face {
   font-family: 'SF PRO TEXT 400';
   src: url('/fonts/SF Pro Text 400.ttf') format('truetype');
+  font-display: swap;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Oswald:400,700,300');
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700,300&display=swap');
 
 @font-face {
   font-family: 'SF PRO DISPLAY 700';
   src: url('/fonts/SF PRO DISPLAY 700.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'SF PRO DISPLAY 600';
   src: url('/fonts/SF PRO DISPLAY 600.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Causten Regular';
   src: url('/fonts/Causten-Regular.otf') format('opentype');
+  font-display: swap;
 }
 
 * {
