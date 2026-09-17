@@ -26,21 +26,59 @@ export const SectionProjectsMobile = () => {
   // GSAP ANIMATIONS
 
   useEffect(() => {
-
     // subheadline box animation
-    gsap.to(subheadlineBoxRef.current, { opacity: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power1', scrollTrigger: { trigger: subheadlineBoxRef.current, start: "top 95%" }});
+    gsap.to(subheadlineBoxRef.current, {
+      opacity: 1,
+      duration: 0.5,
+      ease: "power1",
+      scrollTrigger: { trigger: subheadlineBoxRef.current, start: "top 95%", once: true },
+    });
 
     // headline text animation
     const titleSplit = new SplitText(titleRef.current, { type: "words" });
-    gsap.fromTo(titleSplit.words, { 'will-change': 'opacity, transform', filter: 'blur(8px)', opacity: 0, yPercent: 50 }, { opacity: 1, filter: 'blur(0px)', yPercent: 0, stagger: 0.05, duration: 0.75, ease: "power2", scrollTrigger: { trigger: titleRef.current, start: "top 95%" } });
+    gsap.fromTo(
+      titleSplit.words,
+      { opacity: 0, yPercent: 50 },
+      {
+        opacity: 1,
+        yPercent: 0,
+        stagger: 0.05,
+        duration: 0.75,
+        ease: "power2",
+        scrollTrigger: { trigger: titleRef.current, start: "top 95%", once: true },
+      }
+    );
 
     // description text animation
     const descriptionSplit = new SplitText(descriptionRef.current, { type: "words" });
-    gsap.fromTo(descriptionSplit.words, { filter: 'blur(8px)', opacity: 0 }, { opacity: 1, filter: 'blur(0px)', stagger: 0.025, ease: 'sine', scrollTrigger: { trigger: descriptionRef.current, start: "top 95%" } });
+    gsap.fromTo(
+      descriptionSplit.words,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        stagger: 0.025,
+        ease: "sine",
+        scrollTrigger: { trigger: descriptionRef.current, start: "top 95%", once: true },
+      }
+    );
 
     // image parallax effect
-    gsap.fromTo(imageContainerRef.current, { y: "10vw" }, { y: "-10vw", scrollTrigger: { trigger: ".projects", start: "top bottom", end: "bottom top", scrub: true} })
-  }, [])
+    gsap.fromTo(
+      imageContainerRef.current,
+      { y: "10vw" },
+      {
+        y: "-10vw",
+        ease: "none",
+        force3D: true,
+        scrollTrigger: {
+          trigger: imageContainerRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 0.45,
+        },
+      }
+    );
+  }, []);
 
   // EMBLA CAROUSEL
 

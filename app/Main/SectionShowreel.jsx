@@ -134,49 +134,130 @@ export const SectionShowreel = () => {
 
 
   useEffect(() => {
+    const tweens = [];
+    const section = document.querySelector(".showreel");
 
-    const titleSplit = new SplitText(titleRef.current, { type: "words" });
-    gsap.fromTo(titleSplit.words, { 'will-change': 'opacity, transform', filter: 'blur(8px)', opacity: 0, yPercent: 100 }, { opacity: 1, filter: 'blur(0px)', yPercent: 0, stagger: 0.085, duration: 1, ease: "power2", scrollTrigger: { trigger: titleRef.current, start: "top 95%" } });
+    if (titleRef.current) {
+      const titleSplit = new SplitText(titleRef.current, { type: "words" });
+      tweens.push(
+        gsap.fromTo(
+          titleSplit.words,
+          { opacity: 0, yPercent: 100 },
+          {
+            opacity: 1,
+            yPercent: 0,
+            stagger: 0.085,
+            duration: 1,
+            ease: "power2",
+            scrollTrigger: { trigger: titleRef.current, start: "top 95%", once: true },
+          }
+        )
+      );
+    }
 
-    gsap.to(videoRef.current, { rotateY: "0deg", scale: "1", rotateX: "0deg", translateY: "0vh", scrollTrigger: { trigger: ".showreel", start: "top bottom", end: "top top", scrub: true, markers: false } })
+    if (videoRef.current) {
+      tweens.push(
+        gsap.to(videoRef.current, {
+          rotateY: "0deg",
+          scale: "1",
+          rotateX: "0deg",
+          translateY: "0vh",
+          ease: "none",
+          force3D: true,
+          scrollTrigger: {
+            trigger: ".showreel",
+            start: "top bottom",
+            end: "top top",
+            scrub: 0.45,
+          },
+        })
+      );
+    }
 
-    gsap.to(showreelItemRef1.current, { delay: 0, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: showreelItemRef1.current, start: "top 95%" } });
-    gsap.to(showreelItemRef2.current, { delay: 0.1, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: showreelItemRef2.current, start: "top 95%" } });
-    gsap.to(showreelItemRef3.current, { delay: 0.2, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: showreelItemRef3.current, start: "top 95%" } });
-    gsap.to(showreelItemRef4.current, { delay: 0.3, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: showreelItemRef4.current, start: "top 95%" } });
-    gsap.to(showreelItemRef5.current, { delay: 0.4, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: showreelItemRef5.current, start: "top 95%" } });
+    [
+      showreelItemRef1,
+      showreelItemRef2,
+      showreelItemRef3,
+      showreelItemRef4,
+      showreelItemRef5,
+    ].forEach((ref, i) => {
+      if (!ref.current) return;
+      tweens.push(
+        gsap.to(ref.current, {
+          delay: i * 0.1,
+          opacity: 1,
+          duration: 1,
+          ease: "power1",
+          scrollTrigger: { trigger: ref.current, start: "top 95%", once: true },
+        })
+      );
+    });
 
+    // Play-button follow + video decode only while showreel is on screen
     let mouseX = 0;
     let mouseY = 0;
     let buttonX = 0;
     let buttonY = 0;
+    let rafId = 0;
+    let visible = false;
     const speed = 0.05;
 
+    const tick = () => {
+      if (!visible) {
+        rafId = 0;
+        return;
+      }
+      buttonX += (mouseX - buttonX) * speed;
+      buttonY += (mouseY - buttonY) * speed;
+      if (playButtonRef.current) {
+        playButtonRef.current.style.transform = `translate3d(${buttonX}px, ${buttonY}px, 0)`;
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const startRaf = () => {
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    };
+
     const handleMouseMove = (event) => {
+      if (!visible) return;
       mouseX = (event.clientX / window.innerWidth) * 100 - 50;
       mouseY = (event.clientY / window.innerHeight) * 100 - 50;
+      startRaf();
     };
 
-    const animate = () => {
-      const distX = mouseX - buttonX;
-      const distY = mouseY - buttonY;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        const video =
+          videoRef.current instanceof HTMLVideoElement
+            ? videoRef.current
+            : videoRef.current?.querySelector?.("video");
+        if (visible) {
+          video?.play?.().catch(() => {});
+          startRaf();
+        } else {
+          video?.pause?.();
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            rafId = 0;
+          }
+        }
+      },
+      { rootMargin: "80px 0px" }
+    );
 
-      buttonX += distX * speed;
-      buttonY += distY * speed;
-
-      if (playButtonRef.current) {
-        playButtonRef.current.style.transform = `translate(${buttonX}px, ${buttonY}px)`;
-      }
-
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    window.addEventListener("mousemove", handleMouseMove);
+    if (section) observer.observe(section);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("mousemove", handleMouseMove);
+      if (rafId) cancelAnimationFrame(rafId);
+      tweens.forEach((t) => {
+        t.scrollTrigger?.kill();
+        t.kill();
+      });
     };
   }, []);
 
@@ -194,11 +275,10 @@ export const SectionShowreel = () => {
             <video
               src="/videos/ese.mp4"
               className="showreel-content-video"
-              autoPlay
               muted
               playsInline
               loop
-              preload="metadata"
+              preload="none"
               data-wf-ignore="true"
             />
           </div>
@@ -211,7 +291,7 @@ export const SectionShowreel = () => {
           <div className="showreel-content-row">
             {showreelItems.map((item) => (
               <div
-                className="showreel-content-row-item opacity-blur"
+                className="showreel-content-row-item opacity"
                 ref={item.ref}
                 key={item.title}
               >

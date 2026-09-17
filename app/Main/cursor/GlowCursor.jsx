@@ -276,6 +276,10 @@ const GlowCursor = ({
       target.y = y;
       pointerInside = true;
       lastInputTime = performance.now();
+      if (!raf) {
+        lastFrameTime = performance.now();
+        raf = requestAnimationFrame(render);
+      }
     };
 
     const onPointerLeave = () => {
@@ -339,6 +343,16 @@ const GlowCursor = ({
       program.uniforms.uFade.value = fade;
 
       renderer.render({ scene: mesh });
+
+      // Stop the loop once fully faded — restart on next pointermove
+      if (fade < 0.01 && shouldFade) {
+        fade = 0;
+        program.uniforms.uFade.value = 0;
+        renderer.render({ scene: mesh });
+        raf = 0;
+        return;
+      }
+
       if (!destroyed) raf = requestAnimationFrame(render);
     };
 
@@ -357,7 +371,7 @@ const GlowCursor = ({
     window.addEventListener('resize', resize);
 
     resize();
-    raf = requestAnimationFrame(render);
+    // Don't spin the WebGL loop until the first pointer move
 
     return () => {
       destroyed = true;

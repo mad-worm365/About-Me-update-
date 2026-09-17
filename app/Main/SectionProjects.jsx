@@ -1,12 +1,11 @@
 "use client";
-import React, { Suspense, useEffect, useLayoutEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import SplitText from "gsap/src/SplitText";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import './css/experience.css'
-import { ReactLenis } from 'lenis/react'
 import { PrevButton, NextButton, usePrevNextButtons } from "../Main/Carousel/EmblaCarouselArrowButtons"
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -22,121 +21,38 @@ export const SectionProjects = () => {
   const lineRef = useRef()
   const carouselWrapperRef = useRef()
   const worksItemRef1 = useRef()
-  const worksItemRef2 = useRef()
-  const worksItemRef3 = useRef()
-  const industryImageRef1 = useRef()
-  const industryImageRef2 = useRef()
-  const industryImageRef3 = useRef()
-  const industryImageRef4 = useRef()
   const subheadlineBoxRef1 = useRef()
   const subheadlineBoxRef2 = useRef()
-  const cursor = useRef()
-  const [showCursor, setShowCursor] = useState(false)
 
   useEffect(() => {
 
     // headline text animation
     const titleSplit = new SplitText(titleRef.current, { type: "chars" });
-    gsap.fromTo(titleSplit.chars, { 'will-change': 'opacity, transform', filter: 'blur(8px)', opacity: 0, yPercent: 50 }, { delay: 0.2, opacity: 1, filter: 'blur(0px)', yPercent: 0, stagger: 0.02, duration: 0.75, ease: "power1" });
+    gsap.fromTo(titleSplit.chars, { opacity: 0, yPercent: 50 }, { delay: 0.2, opacity: 1, yPercent: 0, stagger: 0.02, duration: 0.75, ease: "power1" });
 
     // description text animation
-    gsap.to(descriptionRef.current, { opacity: 1, filter: 'blur(0px)', duration: 1, delay: 0.6 })
+    gsap.to(descriptionRef.current, { opacity: 1, duration: 1, delay: 0.6 })
 
     // line animation
-    gsap.fromTo(lineRef.current, { opacity: 0, filter: 'blur(8px)' }, { opacity: 1, filter: 'blur(0px)', duration: 0.5, delay: 0.5 })
+    gsap.fromTo(lineRef.current, { opacity: 0 }, { opacity: 1, duration: 0.5, delay: 0.5 })
 
     // work carousel items animation
     gsap.to(worksItemRef1.current, { delay: 0.4, opacity: 0, duration: 1, ease: 'power1' });
 
-    // industry images
-    gsap.fromTo(industryImageRef1.current, { width: 0 }, { width: "100%", scrollTrigger: { trigger: industryImageRef1.current, start: "top bottom", end: "center center", scrub: true } });
-    gsap.fromTo(industryImageRef2.current, { width: 0 }, { width: "100%", scrollTrigger: { trigger: industryImageRef2.current, start: "top bottom", end: "center center", scrub: true } });
-    gsap.fromTo(industryImageRef3.current, { width: 0 }, { width: "100%", scrollTrigger: { trigger: industryImageRef3.current, start: "top bottom", end: "center center", scrub: true } });
-    gsap.fromTo(industryImageRef4.current, { width: 0 }, { width: "100%", scrollTrigger: { trigger: industryImageRef4.current, start: "top bottom", end: "center center", scrub: true } });
-
     // case studies wrapper animation
-    gsap.to(carouselWrapperRef.current, { opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power1', scrollTrigger: { trigger: carouselWrapperRef.current, start: "top 95%" } });
-
-    // subheadline box animation
-    gsap.to(subheadlineBoxRef1.current, { opacity: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power1', scrollTrigger: { trigger: subheadlineBoxRef1.current, start: "top 95%" } });
-    gsap.to(subheadlineBoxRef2.current, { opacity: 1, filter: 'blur(0px)', duration: 0.5, ease: 'power1', scrollTrigger: { trigger: subheadlineBoxRef2.current, start: "top 95%" } });
+    gsap.to(carouselWrapperRef.current, { opacity: 1, duration: 1, ease: 'power1', scrollTrigger: { trigger: carouselWrapperRef.current, start: "top 95%", once: true } });
 
     // subtitle text animation
-    const subtitleSplit1 = new SplitText(subtitleRef1.current, { type: "words" });
-    const subtitleSplit2 = new SplitText(subtitleRef2.current, { type: "words" });
-    gsap.fromTo(subtitleSplit1.words, { 'will-change': 'opacity, transform', filter: 'blur(8px)', opacity: 0, yPercent: 50 }, { opacity: 1, filter: 'blur(0px)', yPercent: 0, stagger: 0.05, duration: 0.75, ease: "power2", scrollTrigger: { trigger: subtitleRef1.current, start: "top 95%" } });
-    gsap.fromTo(subtitleSplit2.words, { 'will-change': 'opacity, transform', filter: 'blur(8px)', opacity: 0, yPercent: 50 }, { opacity: 1, filter: 'blur(0px)', yPercent: 0, stagger: 0.05, duration: 0.75, ease: "power2", scrollTrigger: { trigger: subtitleRef2.current, start: "top 95%" } });
-
-    // description text animation
-    const subdescriptionSplit1 = new SplitText(subdescriptionRef1.current, { type: "words" });
-    const subdescriptionSplit2 = new SplitText(subdescriptionRef2.current, { type: "words" });
-    gsap.fromTo(subdescriptionSplit1.words, { filter: 'blur(8px)', opacity: 0 }, { opacity: 1, filter: 'blur(0px)', stagger: 0.025, ease: 'sine', scrollTrigger: { trigger: subdescriptionRef1.current, start: "top 95%" } });
-    gsap.fromTo(subdescriptionSplit2.words, { filter: 'blur(8px)', opacity: 0 }, { opacity: 1, filter: 'blur(0px)', stagger: 0.025, ease: 'sine', scrollTrigger: { trigger: subdescriptionRef2.current, start: "top 95%" } });
+    if (subtitleRef1.current) {
+      const subtitleSplit1 = new SplitText(subtitleRef1.current, { type: "words" });
+      gsap.fromTo(subtitleSplit1.words, { opacity: 0, yPercent: 50 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.75, ease: "power2", scrollTrigger: { trigger: subtitleRef1.current, start: "top 95%", once: true } });
+    }
+    if (subtitleRef2.current) {
+      const subtitleSplit2 = new SplitText(subtitleRef2.current, { type: "words" });
+      gsap.fromTo(subtitleSplit2.words, { opacity: 0, yPercent: 50 }, { opacity: 1, yPercent: 0, stagger: 0.05, duration: 0.75, ease: "power2", scrollTrigger: { trigger: subtitleRef2.current, start: "top 95%", once: true } });
+    }
 
   }, [])
-
-  // FOLLOWING CURSOR
-  useEffect(() => {
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-    const speed = 0.05;
-
-    const handleMouseMove = (event) => {
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-    };
-
-    const animate = () => {
-      const distX = mouseX - cursorX;
-      const distY = mouseY - cursorY;
-
-      cursorX += distX * speed;
-      cursorY += distY * speed;
-
-      if (cursor.current) {
-        cursor.current.style.left = `${cursorX}px`;
-        cursor.current.style.top = `${cursorY}px`;
-      }
-
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (showCursor) {
-      gsap.to(cursor.current, {
-        autoAlpha: 1,
-        scale: 1,
-        duration: 0.3,
-        ease: 'power3.out',
-      });
-    } else {
-      gsap.to(cursor.current, {
-        autoAlpha: 0,
-        scale: 0,
-        duration: 0.3,
-        ease: 'power3.in',
-      });
-    }
-  }, [showCursor]);
-
-  const handleMouseEnter = () => {
-    setShowCursor(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowCursor(false);
-  };
 
   // EMBLA CAROUSEL
   const [emblaRef, emblaApi] = useEmblaCarousel({ dragFree: true });
@@ -186,7 +102,6 @@ export const SectionProjects = () => {
 
 
   return (
-    <ReactLenis root>
       <section className="experiences">
         <div className="experiences-content" >
           <div className="experiences-content-top">
@@ -200,7 +115,7 @@ export const SectionProjects = () => {
               </div>
               <div className="experiences-content-top-divider" ref={lineRef} />
             </div>
-            <div className="experiences-carousel-wrapper" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+            <div className="experiences-carousel-wrapper">
               <div className="experiences-carousel-wrapper-overlay" ref={worksItemRef1} ></div>
               <div className="experiences-carousel" ref={emblaRef2} >
                 <div className="experiences-carousel-row">
@@ -391,6 +306,5 @@ export const SectionProjects = () => {
           </div>
         </div>
       </section>
-    </ReactLenis>
   );
 };

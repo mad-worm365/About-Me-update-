@@ -328,15 +328,39 @@ export default function Strands({
     resize();
 
     let animateId = 0;
+    let visible = true;
+    let lastPaletteKey = '';
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible && !animateId) {
+          animateId = requestAnimationFrame(update);
+        }
+      },
+      { rootMargin: '100px 0px' }
+    );
+    observer.observe(ctn);
+
     const update = (t) => {
+      if (!visible) {
+        animateId = 0;
+        return;
+      }
       animateId = requestAnimationFrame(update);
       const current = propsRef.current;
       program.uniforms.uTime.value = t * 0.001;
-      program.uniforms.uColors.value = buildPalette(current.colors);
-      program.uniforms.uColorCount.value = Math.min(
-        current.colors.length,
-        MAX_COLORS
-      );
+
+      const paletteKey = current.colors.join(',');
+      if (paletteKey !== lastPaletteKey) {
+        lastPaletteKey = paletteKey;
+        program.uniforms.uColors.value = buildPalette(current.colors);
+        program.uniforms.uColorCount.value = Math.min(
+          current.colors.length,
+          MAX_COLORS
+        );
+      }
+
       program.uniforms.uStrandCount.value = Math.min(
         Math.max(Math.round(current.count), 1),
         MAX_STRANDS
@@ -370,6 +394,7 @@ export default function Strands({
 
     return () => {
       cancelAnimationFrame(animateId);
+      observer.disconnect();
       window.removeEventListener('resize', resize);
       if (ctn && gl.canvas.parentNode === ctn) {
         ctn.removeChild(gl.canvas);

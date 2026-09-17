@@ -614,7 +614,7 @@
 }
 
 .projects-mobile {
-    display: none;
+    display: flex;
 }
 
 .projects-desktop {
@@ -1689,9 +1689,9 @@
         padding: 0;
     }
 
-    /* .projects-mobile {
+    .projects-mobile {
         display: flex;
-    } */
+    }
 
     .projects-desktop {
         display: none;

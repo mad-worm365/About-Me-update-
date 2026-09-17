@@ -1,10 +1,14 @@
 "use client";
 import dynamic from "next/dynamic";
-import { ReactLenis, useLenis } from "lenis/react";
-import { useEffect, useState } from "react";
+import { ReactLenis } from "lenis/react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import { SectionHero } from "./SectionHero";
 import "./main.css";
 import Loading from "../loading";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Below-the-fold sections: load after hero paints
 const SectionShowreel = dynamic(
@@ -51,14 +55,41 @@ const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const [showBelowFold, setShowBelowFold] = useState(false);
-  const lenis = useLenis();
+  const [isMobile, setIsMobile] = useState(false);
+  const lenisRef = useRef(null);
+
+  // Sync Lenis smooth scroll with GSAP ScrollTrigger (prevents scrub jank)
+  useEffect(() => {
+    const update = (time) => {
+      lenisRef.current?.lenis?.raf(time * 1000);
+    };
+    gsap.ticker.add(update);
+    gsap.ticker.lagSmoothing(0);
+
+    const onScroll = () => ScrollTrigger.update();
+    const lenis = lenisRef.current?.lenis;
+    lenis?.on("scroll", onScroll);
+
+    return () => {
+      gsap.ticker.remove(update);
+      lenis?.off("scroll", onScroll);
+    };
+  }, []);
+
+  // Mount only one projects section (avoids duplicate ScrollTriggers + DOM)
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
 
   // Fast loading gate — never block on remote Spline/assets
   useEffect(() => {
     const started = performance.now();
     let cancelled = false;
 
-    // Start streaming below-the-fold chunks ASAP (don't wait for loader)
     const belowFoldTimer = window.setTimeout(() => {
       if (!cancelled) setShowBelowFold(true);
     }, 150);
@@ -66,7 +97,7 @@ const Main = () => {
     const finish = () => {
       if (cancelled) return;
       setFadeOut(true);
-      lenis?.start();
+      lenisRef.current?.lenis?.start();
       window.setTimeout(() => {
         if (!cancelled) setIsLoading(false);
       }, 350);
@@ -84,7 +115,6 @@ const Main = () => {
       window.addEventListener("load", onReady, { once: true });
     }
 
-    // Hard cap so a slow asset never traps users on the loader
     const maxTimer = window.setTimeout(finish, LOADING_MAX_MS);
 
     return () => {
@@ -93,7 +123,7 @@ const Main = () => {
       window.clearTimeout(belowFoldTimer);
       window.removeEventListener("load", onReady);
     };
-  }, [lenis]);
+  }, []);
 
   // Analytics ping — idle, non-blocking
   useEffect(() => {
@@ -110,8 +140,25 @@ const Main = () => {
     return () => window.clearTimeout(t);
   }, []);
 
+  // Refresh ScrollTrigger after below-fold sections mount
+  useEffect(() => {
+    if (!showBelowFold) return;
+    const t = window.setTimeout(() => ScrollTrigger.refresh(), 400);
+    return () => window.clearTimeout(t);
+  }, [showBelowFold]);
+
   return (
-    <ReactLenis root>
+    <ReactLenis
+      root
+      ref={lenisRef}
+      options={{
+        autoRaf: false,
+        lerp: 0.12,
+        smoothWheel: true,
+        syncTouch: false,
+        wheelMultiplier: 0.85,
+      }}
+    >
       {isLoading && (
         <div className={`initial-loading-screen ${fadeOut ? "fade-out" : ""}`}>
           <div className="loading-screen">
@@ -127,8 +174,7 @@ const Main = () => {
           <div className="border-padding">
             <div className="section-border"></div>
           </div>
-          <SectionProjects />
-          <SectionProjectsMobile />
+          {isMobile ? <SectionProjectsMobile /> : <SectionProjects />}
           <SectionSkill />
           <div className="normal-padding" />
           <SectionTestimonials />

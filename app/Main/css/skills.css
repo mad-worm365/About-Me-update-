@@ -8,6 +8,8 @@
     padding: 0;
     padding-top: 10vh;
     padding-bottom: 10vh;
+    content-visibility: auto;
+    contain-intrinsic-size: 100vw 160vh;
 }
 
 .skills-content {
@@ -289,6 +291,8 @@
     height: 30vh;
     display: flex;
     justify-content: space-between;
+    content-visibility: auto;
+    contain-intrinsic-size: 100vw 30vh;
 }
 
 .skills-industries-item-left {
@@ -308,12 +312,17 @@
     height: 100%;
     overflow: hidden;
     border-radius: 10px;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    contain: paint;
 }
 
 .skills-industries-item-right-image {
     width: 40vw;
     height: 100%;
     object-fit: cover;
+    transform: translateZ(0);
 }
 
 .skills-casestudies {

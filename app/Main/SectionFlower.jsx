@@ -92,7 +92,7 @@ export const SectionFlower = () => {
           trigger: ".flower",
           start: "top bottom",
           end: "bottom top",
-          scrub: true,
+          scrub: 0.8,
         },
       });
     };
