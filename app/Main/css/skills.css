@@ -8,8 +8,6 @@
     padding: 0;
     padding-top: 10vh;
     padding-bottom: 10vh;
-    content-visibility: auto;
-    contain-intrinsic-size: 100vw 160vh;
 }
 
 .skills-content {
@@ -291,8 +289,6 @@
     height: 30vh;
     display: flex;
     justify-content: space-between;
-    content-visibility: auto;
-    contain-intrinsic-size: 100vw 30vh;
 }
 
 .skills-industries-item-left {

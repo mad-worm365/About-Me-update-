@@ -1,6 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { ReactLenis } from "lenis/react";
+import "lenis/dist/lenis.css";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -58,6 +59,13 @@ const Main = () => {
   const [isMobile, setIsMobile] = useState(false);
   const lenisRef = useRef(null);
 
+  const resizeLenis = () => {
+    const lenis = lenisRef.current?.lenis;
+    if (!lenis) return;
+    lenis.resize();
+    ScrollTrigger.refresh();
+  };
+
   // Sync Lenis smooth scroll with GSAP ScrollTrigger (prevents scrub jank)
   useEffect(() => {
     const update = (time) => {
@@ -67,10 +75,20 @@ const Main = () => {
     gsap.ticker.lagSmoothing(0);
 
     const onScroll = () => ScrollTrigger.update();
-    const lenis = lenisRef.current?.lenis;
-    lenis?.on("scroll", onScroll);
+    let lenis = lenisRef.current?.lenis;
+    let tries = 0;
+    const bind = window.setInterval(() => {
+      lenis = lenisRef.current?.lenis;
+      tries += 1;
+      if (lenis || tries > 40) {
+        window.clearInterval(bind);
+        lenis?.on("scroll", onScroll);
+        lenis?.resize();
+      }
+    }, 50);
 
     return () => {
+      window.clearInterval(bind);
       gsap.ticker.remove(update);
       lenis?.off("scroll", onScroll);
     };
@@ -97,9 +115,12 @@ const Main = () => {
     const finish = () => {
       if (cancelled) return;
       setFadeOut(true);
-      lenisRef.current?.lenis?.start();
+      const lenis = lenisRef.current?.lenis;
+      lenis?.start();
+      lenis?.resize();
       window.setTimeout(() => {
         if (!cancelled) setIsLoading(false);
+        resizeLenis();
       }, 350);
     };
 
@@ -140,12 +161,18 @@ const Main = () => {
     return () => window.clearTimeout(t);
   }, []);
 
-  // Refresh ScrollTrigger after below-fold sections mount
+  // After below-fold sections mount, remeasure Lenis scroll limit
   useEffect(() => {
     if (!showBelowFold) return;
-    const t = window.setTimeout(() => ScrollTrigger.refresh(), 400);
-    return () => window.clearTimeout(t);
-  }, [showBelowFold]);
+    const timers = [50, 200, 500, 1200].map((ms) =>
+      window.setTimeout(resizeLenis, ms)
+    );
+    window.addEventListener("resize", resizeLenis);
+    return () => {
+      timers.forEach((t) => window.clearTimeout(t));
+      window.removeEventListener("resize", resizeLenis);
+    };
+  }, [showBelowFold, isMobile]);
 
   return (
     <ReactLenis

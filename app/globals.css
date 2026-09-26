@@ -40,6 +40,13 @@ body,
   --border-radius: 25px;
 }
 
+/* Lenis root scroll needs auto height so page growth updates the scroll limit.
+   Without this, wheel scrolling freezes after the first viewport. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
 body {
   font-family: "SF PRO TEXT 400", sans-serif;
   background-color: #010101;
