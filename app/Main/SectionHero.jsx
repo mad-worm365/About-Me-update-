@@ -167,7 +167,7 @@ export const SectionHero = () => {
                   <div className="flex items-start justify-start width-full">
                     <MorphingText texts={texts} />
                   </div>
-                  I{"'"}m Jonny Steven
+                  I{"'"}m Mad Worm
                   <br />
                   Senior AI Full Stack Engineer
                   <br />

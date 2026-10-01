@@ -40,12 +40,12 @@ export const SectionFooter = () => {
                 <img
                   src="/images/logo.webp"
                   className="footer-logo"
-                  alt="Jonny Steven Logo"
+                  alt="Mad Worm Logo"
                   loading="lazy"
                 />
               </div>
               <div className="footer-branding-content">
-                <h1 className="subheadline white footer-title">Jonny Steven</h1>
+                <h1 className="subheadline white footer-title">Mad Worm</h1>
                 <p className="description grey footer-description">
                   Senior AI Full Stack Engineer building production LLM systems, scalable backends, and modern web platforms.
                 </p>
@@ -93,7 +93,7 @@ export const SectionFooter = () => {
       <div className="footer-divider" ref={centerRef1}></div>
 
       <div className="footer-content-bottom">
-        <p className="small-description grey copyright-text" ref={bottomRef1}>© {new Date().getFullYear()} Jonny Steven. All Rights Reserved.</p>
+        <p className="small-description grey copyright-text" ref={bottomRef1}>© {new Date().getFullYear()} Mad Worm. All Rights Reserved.</p>
         <div className="footer-socials" ref={bottomRef2}>
           <a href="https://www.linkedin.com/in/jonny-steven-835023b7" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="footer-social-link">
             <FaLinkedin className="footer-socials-icon" />

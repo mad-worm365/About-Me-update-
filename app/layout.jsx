@@ -3,26 +3,26 @@ import { Navigation } from "./Navigation";
 import Head from 'next/head';
 
 export const metadata = {
-  title: "Jonny Steven | Senior AI Full Stack Engineer Portfolio",
-  description: "Jonny Steven is a Senior AI Full Stack Engineer with 8+ years of experience building scalable web platforms, LLM-powered applications, and cloud-native systems with React, Next.js, Node.js, Python, and PostgreSQL.",
-  keywords: ["Jonny Steven", "Senior AI Full Stack Engineer", "AI Engineer", "Full Stack Developer", "React", "Next.js", "Node.js", "NestJS", "Python", "LangChain", "LLM", "RAG", "PostgreSQL", "Redis", "Apache Kafka", "TypeScript", "Kubernetes", "AWS", "Docker", "CI/CD"],
+  title: "Mad Worm | Senior AI Full Stack Engineer Portfolio",
+  description: "Mad Worm is a Senior AI Full Stack Engineer with 8+ years of experience building scalable web platforms, LLM-powered applications, and cloud-native systems with React, Next.js, Node.js, Python, and PostgreSQL.",
+  keywords: ["Mad Worm", "Senior AI Full Stack Engineer", "AI Engineer", "Full Stack Developer", "React", "Next.js", "Node.js", "NestJS", "Python", "LangChain", "LLM", "RAG", "PostgreSQL", "Redis", "Apache Kafka", "TypeScript", "Kubernetes", "AWS", "Docker", "CI/CD"],
   image: "/images/logo-background.png",
   metadataBase: new URL("https://zhan-portfolio-v2.vercel.app/"),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Jonny Steven | Senior AI Full Stack Engineer Portfolio",
+    title: "Mad Worm | Senior AI Full Stack Engineer Portfolio",
     description: "Senior AI Full Stack Engineer specializing in LLM integration, scalable backends, and modern React/Next.js frontends.",
     url: 'https://zhan-portfolio-v2.vercel.app/',
-    siteName: 'Jonny Steven Portfolio',
+    siteName: 'Mad Worm Portfolio',
     
     images: [
       {
         url: '/images/logo.webp',
         width: 1200,
         height: 630,
-        alt: 'Jonny Steven - Senior AI Full Stack Engineer',
+        alt: 'Mad Worm - Senior AI Full Stack Engineer',
       }
     ],
     locale: 'en_US',
@@ -30,7 +30,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jonny Steven | Senior AI Full Stack Engineer Portfolio',
+    title: 'Mad Worm | Senior AI Full Stack Engineer Portfolio',
     description: 'Senior AI Full Stack Engineer building production LLM systems, real-time platforms, and cloud-native applications.',
     images: ['/images/logo-background.png'],
   },
@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Jonny Steven",
+              "name": "Mad Worm",
               "jobTitle": "Senior AI Full Stack Engineer",
               "email": "jonny.steven.js@gmail.com",
               "url": "https://zhan-portfolio-v2.vercel.app/",
@@ -73,8 +73,8 @@ export default function RootLayout({ children }) {
             })
           }}
         />
-        <meta property="og:site_name" content="Jonny Steven Portfolio" />
-        <meta name="application-name" content="Jonny Steven Portfolio" />
+        <meta property="og:site_name" content="Mad Worm Portfolio" />
+        <meta name="application-name" content="Mad Worm Portfolio" />
       </Head>
       <body>
         <Navigation />

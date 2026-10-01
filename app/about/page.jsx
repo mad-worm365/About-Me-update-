@@ -2,7 +2,7 @@ import "./about.css";
 import { AboutPageSection } from "./AboutPageSection";
 
 export const metadata = {
-  title: 'Jonny Steven | About',
+  title: 'Mad Worm | About',
   description: "Senior AI Full Stack Engineer with 8+ years building scalable platforms, LLM-powered applications, and cloud-native systems.",
   openGraph: {
     title: 'About Us',
